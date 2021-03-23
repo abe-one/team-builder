@@ -31,7 +31,12 @@ function App() {
 
   return (
     <div>
-      <TeamList team={teamMembers} />
+      <h1>Team BUILDER</h1>
+      <section>
+        <h2>Team List</h2>
+        <TeamList team={teamMembers} />
+      </section>
+
       <Form
         values={teamFormValues}
         update={updateTeamForm}

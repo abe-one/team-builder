@@ -9,9 +9,12 @@ export default function TeamList({ team }) {
       </>
     );
   } else {
-    console.log(team);
     return team.map((member) => {
-      return <h2 key={member.email}>Name: {member.name}</h2>;
+      return (
+        <h4 key={member.email}>
+          Name: {member.name} Role: {member.role}
+        </h4>
+      );
     });
   }
 }
