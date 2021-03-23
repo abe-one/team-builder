@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TeamList({ team, test }) {
+export default function TeamList({ team }) {
   if (team.length === 0) {
     return (
       <>
@@ -9,7 +9,8 @@ export default function TeamList({ team, test }) {
       </>
     );
   } else {
-    team.map((member) => {
+    console.log(team);
+    return team.map((member) => {
       return <h2 key={member.email}>Name: {member.name}</h2>;
     });
   }

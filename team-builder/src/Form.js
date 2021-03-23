@@ -40,6 +40,7 @@ export default function Form({ values, update, submit }) {
           <option value="Fullstack">Fullstack</option>
         </select>
       </label>
+      <button>Add new member</button>
     </form>
   );
 }
