@@ -19,7 +19,7 @@ function App() {
   }
 
   function submitMember() {
-    if (!teamFormValues.name) {
+    if (!teamFormValues.name || !teamFormValues.email || !teamFormValues.role) {
       return;
     }
     debugger;
@@ -27,6 +27,7 @@ function App() {
     newTeam.push(teamFormValues);
     setTeamMembers(newTeam);
     setTeamFormValues(initialValues);
+    document.getElementById("form-name").focus();
   }
 
   return (

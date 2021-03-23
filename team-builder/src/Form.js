@@ -14,6 +14,7 @@ export default function Form({ values, update, submit }) {
       <label>
         Name:
         <input
+          id="form-name"
           name="name"
           type="text"
           value={values.name}
