@@ -30,6 +30,7 @@ function App() {
         if (member.email === memberToEdit.email) {
           return (member = teamFormValues);
         }
+        return member;
       });
       setMemberToEdit(null);
     } else {
