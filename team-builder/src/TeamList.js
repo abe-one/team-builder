@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TeamList({ team }) {
+export default function TeamList({ team, edit }) {
   if (team.length === 0) {
     return (
       <>
@@ -11,9 +11,12 @@ export default function TeamList({ team }) {
   } else {
     return team.map((member) => {
       return (
-        <h4 key={member.email}>
-          Name: {member.name} Role: {member.role}
-        </h4>
+        <div className="team-member">
+          <h4 key={member.email}>
+            Name: {member.name} Role: {member.role}
+          </h4>
+          <button onClick={() => edit(member)}>Edit</button>
+        </div>
       );
     });
   }

@@ -12,36 +12,55 @@ function App() {
   // States
   const [teamMembers, setTeamMembers] = useState([]);
   const [teamFormValues, setTeamFormValues] = useState(initialValues);
+  const [memberToEdit, setMemberToEdit] = useState(null);
 
   // Functions
   function updateTeamForm(inputName, inputValue) {
     setTeamFormValues({ ...teamFormValues, [inputName]: inputValue.trim() });
   }
 
-  function submitMember() {
+  function submitMember(isEdit) {
     if (!teamFormValues.name || !teamFormValues.email || !teamFormValues.role) {
       return;
     }
-    debugger;
+    // if parameter then map else newTeam
     let newTeam = teamMembers;
-    newTeam.push(teamFormValues);
+    if (isEdit) {
+      newTeam = newTeam.map((member) => {
+        if (member.email === memberToEdit.email) {
+          return (member = teamFormValues);
+        }
+      });
+      setMemberToEdit(null);
+    } else {
+      newTeam.push(teamFormValues);
+    }
     setTeamMembers(newTeam);
     setTeamFormValues(initialValues);
     document.getElementById("form-name").focus();
   }
+
+  function editMember(memberObj) {
+    setMemberToEdit(memberObj);
+    setTeamFormValues(memberObj);
+  }
+
+  // useEffect(() => setTeamFormValues, [memberToEdit]);
 
   return (
     <div>
       <h1>Team BUILDER</h1>
       <section>
         <h2>Team List</h2>
-        <TeamList team={teamMembers} />
+        <TeamList team={teamMembers} edit={editMember} />
       </section>
 
       <Form
         values={teamFormValues}
         update={updateTeamForm}
         submit={submitMember}
+        memberToEdit={memberToEdit}
+        setTeamFormValues={setTeamFormValues}
       />
     </div>
   );

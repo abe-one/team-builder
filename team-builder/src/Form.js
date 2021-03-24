@@ -1,13 +1,17 @@
 import React from "react";
 
-export default function Form({ values, update, submit }) {
+export default function Form({ values, update, submit, memberToEdit }) {
   const onChange = (e) => {
     let { name, value } = e.target;
     update(name, value);
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    submit();
+    if (!memberToEdit) {
+      submit();
+    } else {
+      submit(true);
+    }
   };
   return (
     <form className="form-container" onSubmit={onSubmit}>
@@ -15,6 +19,7 @@ export default function Form({ values, update, submit }) {
         Name:
         <input
           id="form-name"
+          autoFocus
           name="name"
           type="text"
           value={values.name}
@@ -35,13 +40,13 @@ export default function Form({ values, update, submit }) {
       <label>
         Role:
         <select name="role" value={values.role} onChange={onChange}>
-          <option value="">--Role--</option>
+          <option value=""></option>
           <option value="Frontend">Frontend</option>
           <option value="Backend">Backend</option>
           <option value="Fullstack">Fullstack</option>
         </select>
       </label>
-      <button>Add new member</button>
+      <button>{memberToEdit ? "Edit Member" : "Add New Member"}</button>
     </form>
   );
 }
